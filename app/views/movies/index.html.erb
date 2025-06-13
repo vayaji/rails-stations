@@ -1,0 +1,9 @@
+<h1>上映中の映画一覧</h1>
+<ul>
+  <% @movies.each do |movie| %>
+    <li>
+      <h2><%= movie.name %></h2>
+      <img src="<%= movie.image_url %>" alt="<%= movie.name %>">
+    </li>
+  <% end %>
+</div>
