@@ -9,4 +9,8 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :movies, only: [:index]
+
+  namespace :admin do
+    resources :movies, only: [:index]
+  end
 end
