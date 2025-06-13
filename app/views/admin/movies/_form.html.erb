@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
+<%= form_with model: movie, url: admin_movies_path do |form| %>
+  <div>
+    <%= form.label :name, "タイトル" %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.label :year, "公開年" %>
+    <%= form.text_field :year, class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.label :description, "概要" %>
+    <%= form.text_area :description, class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.label :image_url, "画像URL" %>
+    <%= form.text_field :image_url, class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.label :is_showing, "上映中" %>
+    <%= form.check_box :is_showing, class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
