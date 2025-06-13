@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <p id="alert"><%= alert %></p>
-<%= form_with model: movie, url: admin_movies_path do |form| %>
+<%= form_with model: movie, url: [:admin, movie] do |form| %>
   <div>
     <%= form.label :name, "タイトル" %>
     <%= form.text_field :name, class: 'form-control' %>
