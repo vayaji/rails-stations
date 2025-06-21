@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::MoviesController < ApplicationController
-  before_action :set_movie, only: %i[edit update]
+  before_action :set_movie, only: %i[edit update destroy]
 
   def index
     @movies = Movie.all
@@ -34,12 +34,18 @@ class Admin::MoviesController < ApplicationController
     end
   end
 
+  def destroy
+    @movie.destroy
+    flash[:notice] = 'Movie was successfully deleted.'
+    redirect_to admin_movies_path
+  end
+
   private
 
   def set_movie
     @movie = Movie.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    redirect_to admin_movies_path, alert: 'Movie not found.'
+  # rescue ActiveRecord::RecordNotFound
+  #   redirect_to admin_movies_path, alert: 'Movie not found.'
   end
 
   def movie_params
