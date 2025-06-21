@@ -1,3 +1,24 @@
+<%= form_with url: movies_path, method: :get, local: true do |form| %>
+  <div>
+    <%= form.label :keyword, "キーワード検索:" %>
+    <%= form.text_field :keyword %>
+  </div>
+
+  <div>
+    <%= form.radio_button :is_showing, "", id: "is_showing_all" %>
+    <%= form.label :is_showing_all, "すべて" %>
+
+    <%= form.radio_button :is_showing, "1", id: "is_showing_released" %>
+    <%= form.label :is_showing_released, "公開中" %>
+
+    <%= form.radio_button :is_showing, "0", id: "is_showing_upcoming" %>
+    <%= form.label :is_showing_upcoming, "公開予定" %>
+  </div>
+
+  <%= form.submit "検索" %>
+<% end %>
+
+
 <h1>上映中の映画一覧</h1>
 <ul>
   <% @movies.each do |movie| %>
