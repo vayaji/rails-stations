@@ -1,0 +1,10 @@
+<table>
+  <% @rows.each do |row| %>
+    <tr>
+      <% @columns.each do |col| %>
+        <% sheet = @sheets.find { |s| s.row == row && s.column == col } %>
+        <td><%= "#{sheet.row}-#{sheet.column}" %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
