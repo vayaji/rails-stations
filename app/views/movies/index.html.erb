@@ -23,7 +23,7 @@
 <ul>
   <% @movies.each do |movie| %>
     <li>
-      <h2><%= movie.name %></h2>
+      <h2><%= link_to movie.name, movie %></h2>
       <img src="<%= movie.image_url %>" alt="<%= movie.name %>">
     </li>
   <% end %>
