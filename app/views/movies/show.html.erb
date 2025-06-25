@@ -1,0 +1,8 @@
+<%= @movie.name %>
+<%= @movie.year %>
+<%= @movie.description %>
+<%= @movie.is_showing ? "上映中" : "上映予定" %>
+<% @schedules.each do |schedule| %>
+  <%= schedule.start_time %> - <%= schedule.end_time %>
+<% end %>
+<img src="<%= @movie.image_url %>" alt="Movie Image" />

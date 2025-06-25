@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+  before_action :set_movie, only: %i[ show ]
   def index
     keyword = params[:keyword]
     is_showing = params[:is_showing]
@@ -12,5 +13,14 @@ class MoviesController < ApplicationController
     if keyword.present?
       @movies = @movies.where("name LIKE ? OR description LIKE ?", "%#{keyword}%", "%#{keyword}%")
     end
+  end
+  def show
+    
+  end
+
+private
+  def set_movie
+    @movie = Movie.find(params[:id])
+    @schedules = @movie.schedules
   end
 end

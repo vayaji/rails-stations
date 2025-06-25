@@ -1,13 +1,3 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-
 # ==== Movies ====
 movies = [
   {
@@ -33,7 +23,6 @@ movies = [
   }
 ]
 
-
 movies.each do |movie_attrs|
   Movie.find_or_create_by!(name: movie_attrs[:name]) do |movie|
     movie.assign_attributes(movie_attrs)
@@ -53,3 +42,30 @@ rows.each do |row|
 end
 
 puts "✔️ Sheets seeding completed (#{rows.size * columns.size} seats)"
+
+# ==== Schedules ====
+schedule_data = [
+  {
+    movie_name: "君の名は。",
+    start_time: DateTime.new(2025, 6, 30, 14, 0, 0),
+    end_time: DateTime.new(2025, 6, 30, 16, 0, 0)
+  },
+  {
+    movie_name: "スパイダーマン: ノー・ウェイ・ホーム",
+    start_time: DateTime.new(2025, 6, 30, 17, 30, 0),
+    end_time: DateTime.new(2025, 6, 30, 20, 0, 0)
+  }
+]
+
+schedule_data.each do |data|
+  movie = Movie.find_by(name: data[:movie_name])
+  if movie
+    Schedule.find_or_create_by!(movie_id: movie.id, start_time: data[:start_time]) do |schedule|
+      schedule.end_time = data[:end_time]
+    end
+  else
+    puts "⚠️ 映画『#{data[:movie_name]}』が見つかりませんでした。"
+  end
+end
+
+puts "🕒 Schedules seeding completed (#{schedule_data.size} schedules)"
