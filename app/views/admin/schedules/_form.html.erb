@@ -1,0 +1,27 @@
+<%= form_with model: schedule, url: [:admin, schedule] do |form| %>
+    <% if schedule.new_record? %>
+      <div>
+        <%= form.label :movie_id, "映画" %>
+        <%= form.collection_select :movie_id, Movie.all, :id, :name, (movie.present? ? { selected: movie.id } : {}), class: 'form-control' %>
+      </div>
+    <% else %>
+      <div>
+        <%= form.label :movie_id, "映画" %>
+          <%= form.collection_select :movie_id, Movie.all, :id, :name, disabled: true, class: 'form-control' %>
+          <%= form.hidden_field :movie_id %>
+      </div>
+    <% end %>
+  <div>
+    <%= form.label :start_time, "開始時間" %>
+    <%= form.datetime_select :start_time, class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.label :end_time, "終了時間" %>
+    <%= form.datetime_select :end_time, class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

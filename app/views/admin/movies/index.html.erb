@@ -14,11 +14,11 @@
   <tbody>
     <% @movies.each do |movie| %>
       <tr>
-        <td><%= link_to movie.id, edit_admin_movie_path(movie) %></td>
+        <td><%= link_to movie.id, admin_movie_path(movie) %></td>
         <td><%= movie.name %></td>
         <td><%= movie.year %></td>
         <td><%= movie.description %></td>
-        <td><%= movie.image_url %></td>
+        <td><img src="<%= movie.image_url %>" alt="Movie Image" /></td>
         <td><%= movie.is_showing ? 'Yes' : 'No' %></td>
         <td><%= movie.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
         <td><%= movie.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></td>

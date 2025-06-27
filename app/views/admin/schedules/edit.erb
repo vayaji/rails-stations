@@ -1,0 +1,2 @@
+<%= render "form", schedule: @schedule %>
+<%= button_to "Delete Schedule", admin_schedule_path(@schedule), method: :delete, data: { confirm: "Are you sure?" } %>

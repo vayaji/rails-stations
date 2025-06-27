@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::MoviesController < ApplicationController
-  before_action :set_movie, only: %i[edit update destroy]
+  before_action :set_movie, only: %i[show update destroy]
 
   def index
     @movies = Movie.all
@@ -21,7 +21,7 @@ class Admin::MoviesController < ApplicationController
     end
   end
 
-  def edit
+  def show
 
   end
 

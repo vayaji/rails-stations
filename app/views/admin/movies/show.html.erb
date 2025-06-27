@@ -1,0 +1,7 @@
+<%= render "form", movie: @movie %>
+<%= button_to "Delete", admin_movie_path(@movie), method: :delete, data: { turbo_confirm: "Are you sure?" }%>
+<%= link_to "新規スケジュール", new_admin_movie_schedule_path(@movie) %>
+<%= link_to "上映スケジュール", admin_schedules_path %>
+<% @movie.schedules.each do |schedule| %>
+  <%= link_to "スケジュール ##{schedule.id}", admin_schedule_path(schedule) %>
+<% end %>
