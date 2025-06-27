@@ -1,0 +1,21 @@
+<%= form_with(model: reservation) do |form| %>
+  <%= form.hidden_field :schedule_id, value: reservation.schedule_id %>
+
+  <%= form.hidden_field :sheet_id, value: reservation.sheet_id %>
+
+  <%= form.hidden_field :date, value: reservation.date %>
+
+  <div>
+    <%= form.label :email, "メールアドレス" %>
+    <%= form.email_field :email, class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.label :name, "名前" %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.submit "座席を予約する" %>
+  </div>
+<% end %>

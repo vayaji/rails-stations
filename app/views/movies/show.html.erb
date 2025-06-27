@@ -2,12 +2,30 @@
 <%= @movie.year %>
 <%= @movie.description %>
 <%= @movie.is_showing ? "上映中" : "上映予定" %>
-<ul>
-  <% @schedules.first(10).each do |schedule| %>
-    <li>
-      <%= schedule.start_time %> - <%= schedule.end_time %>
-    </li>
-  <% end %>
-  <li>...</li>
-</ul>
+<%= form_with url: movie_reservation_path(@movie), method: :get, local: true do |f| %>
+  <div class="field">
+    <%= label_tag :date, "日付" %>
+    <%= select_tag :date,
+      options_for_select(
+        (Date.today..(Date.today + 7)).map { |d| [d.strftime("%m/%d (%a)"), d.strftime("%F")] }
+      ),
+      prompt: "日付を選んでください"
+    %>
+  </div>
+  <div class="field">
+    <%= label_tag :schedule_id, "上映スケジュールを選択" %>
+    <%= select_tag :schedule_id,
+        options_for_select(
+          @movie.schedules.map { |s| ["#{s.start_time.strftime("%m/%d (%a) %H:%M")} 上映", s.id] }
+        ),
+        prompt: "スケジュールを選んでください"
+    %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "座席を予約する" %>
+  </div>
+<% end %>
+
+
 <img src="<%= @movie.image_url %>" alt="Movie Image" />
