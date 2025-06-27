@@ -2,6 +2,11 @@
 <%= button_to "Delete", admin_movie_path(@movie), method: :delete, data: { turbo_confirm: "Are you sure?" }%>
 <%= link_to "新規スケジュール", new_admin_movie_schedule_path(@movie) %>
 <%= link_to "上映スケジュール", admin_schedules_path %>
+<ul>
 <% @movie.schedules.each do |schedule| %>
-  <%= link_to "スケジュール ##{schedule.id}", admin_schedule_path(schedule) %>
+  <li>
+    <%= link_to "スケジュール ##{schedule.id}", edit_admin_schedule_path(schedule) %>
+    <span>(<%= schedule.start_time.strftime("%Y-%m-%d %H:%M") %> - <%= schedule.end_time.strftime("%Y-%m-%d %H:%M") %>)</span>
+  </li>
 <% end %>
+</ul>
