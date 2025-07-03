@@ -28,14 +28,15 @@ class MoviesController < ApplicationController
     if !params[:date].present?
       redirect_to movies_path, alert: "日付が必要です" and return
     end
-    @schedule = Schedule.find_by(id: params[:schedule_id]) if params[:schedule_id].present?
+    @schedule = Schedule.find_by(id: params[:schedule_id])
     @movie = Movie.find(params[:movie_id])
     @sheets = Sheet.all
     @rows = @sheets.map(&:row).uniq.sort
     @columns = @sheets.map(&:column).uniq.sort
 
-    @reservations = Reservation.where(schedule_id: @schedule.id) if @schedule.present?
+    @reservations = Reservation.where(schedule_id: @schedule.id, date: params[:date])
     @date = params[:date] || Date.today.strftime("%F")
+    @reserved_sheet_ids = @reservations.pluck(:sheet_id)
   end
 
 private
