@@ -17,4 +17,5 @@ ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
 # CMD ["rails", "server", "-b", "0.0.0.0"]
-CMD [ "rdbg", "-n", "--open", "--host", "0.0.0.0", "--port", "12345", "-c", "--", "rails", "server", "-b", "0.0.0.0" ]
+# CMD [ "rdbg", "-n", "--open", "--host", "0.0.0.0", "--port", "12345", "-c", "--", "rails", "server", "-b", "0.0.0.0" ]
+CMD [ "rdbg", "-n", "--open", "--host", "0.0.0.0", "--port", "12345", "-c", "--", "bin/dev" ]

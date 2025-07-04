@@ -12,12 +12,13 @@ services:
       - "3306:3306"
     volumes:
       - rails-railway-stations-volume:/var/lib/mysql
+    tty: true
   web:
     build:
       context: .
       dockerfile: ./infra/web/Dockerfile
     # command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
-    command: bash -c "rm -f tmp/pids/server.pid && rdbg -n --open --host 0.0.0.0 --port 12345 -c -- bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: bash -c "rm -f tmp/pids/server.pid && rdbg -n --open --host 0.0.0.0 --port 12345 -c -- bin/dev"
     volumes:
       - .:/app
       - bundle:/usr/local/bundle
@@ -27,7 +28,9 @@ services:
       - "12345:12345"
     links:
       - db
+    tty: true
 
 volumes:
   rails-railway-stations-volume:
   bundle:
+
