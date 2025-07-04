@@ -50,6 +50,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 6.1.3'
   gem "factory_bot_rails"
   gem 'rails-controller-testing'
+  gem 'sorbet', :group => :development
+  gem 'sorbet-runtime'
+  gem 'tapioca', require: false, :group => [:development, :test]
 end
 
 group :development do

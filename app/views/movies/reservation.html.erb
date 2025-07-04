@@ -4,10 +4,10 @@
       <% @columns.each do |col| %>
         <% sheet = @sheets.find { |s| s.row == row && s.column == col } %>
         <% if @reserved_sheet_ids.include?(sheet.id) %>
-          <td class="reserved"><%= "#{sheet.row}-#{sheet.column}" %></td>
+          <td class="reserved"><%= sheet.formatted_name %></td>
         <% else %>
           <td>
-            <%= link_to "#{sheet.row}-#{sheet.column}", new_movie_schedule_reservation_path(
+            <%= link_to sheet.formatted_name, new_movie_schedule_reservation_path(
               date: @date,
               movie_id: @movie.id,
               schedule_id: @schedule.id,

@@ -1,0 +1,36 @@
+<%= form_with url: reservation.id.present? ? admin_reservation_path : new_admin_reservation_path, method: :get, local: true do |form| %>
+  <div>
+    <%= form.label :movie_id, "映画" %>
+    <%= form.collection_select :movie_id, Movie.all, :id, :name, { selected: @movie_id.present? ? @movie_id : reservation.id.present? ? reservation.schedule.movie.id : nil }, disabled: @movie_id.present?, class: 'form-control' %>
+  </div>
+  <% if !@movie_id.present? %>
+    <div>
+      <%= form.submit "次へ" %>
+    </div>
+  <% end %>
+<% end %>
+<%= form_with model: reservation, url: [:admin, reservation], local: true do |form| %>
+  <div>
+    <%= form.label :name, "名前" %>
+    <%= form.text_field :name, disabled: !@movie_id.present?, class: 'form-control' %>
+  </div>
+  <div>
+    <%= form.label :email, "メールアドレス" %>
+    <%= form.email_field :email, disabled: !@movie_id.present?, class: 'form-control' %>
+  </div>
+  <div>
+    <%= form.label :sheet_id, "座席" %>
+    <%= form.collection_select :sheet_id, Sheet.all, :id, :formatted_name, {}, disabled: !@movie_id.present?, class: 'form-control' %>
+  </div>
+  <div>
+    <%= form.label :date, "予約日" %>
+    <%= form.date_select :date, {}, disabled: !@movie_id.present?, class: 'form-control' %>
+  </div>
+  <div>
+    <%= form.label :schedule_id, "スケジュール" %>
+    <%= form.collection_select :schedule_id, @schedules, :id, :time_range, {}, disabled: !@movie_id.present?, class: 'form-control' %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
