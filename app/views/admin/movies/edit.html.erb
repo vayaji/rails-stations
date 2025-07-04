@@ -1,12 +1,17 @@
-<%= render "form", movie: @movie %>
-<%= button_to "Delete", admin_movie_path(@movie), method: :delete, data: { turbo_confirm: "Are you sure?" }%>
-<%= link_to "新規スケジュール", new_admin_movie_schedule_path(@movie) %>
-<%= link_to "上映スケジュール", admin_schedules_path %>
-<ul>
-<% @movie.schedules.each do |schedule| %>
-  <li>
-    <%= link_to "スケジュール ##{schedule.id}", edit_admin_schedule_path(schedule) %>
-    <span>(<%= schedule.start_time.strftime("%Y-%m-%d %H:%M") %> - <%= schedule.end_time.strftime("%Y-%m-%d %H:%M") %>)</span>
-  </li>
-<% end %>
-</ul>
+<div class="max-w-2xl mx-auto mt-10 p-8 bg-white rounded-lg shadow-md">
+  <%= render "form", movie: @movie %>
+  <div class="flex flex-wrap gap-4 mt-6 mb-8">
+    <%= button_to "Delete", admin_movie_path(@movie), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition" %>
+    <%= link_to "新規スケジュール", new_admin_movie_schedule_path(@movie), class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition" %>
+    <%= link_to "上映スケジュール", admin_schedules_path, class: "bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded transition" %>
+  </div>
+  <h2 class="text-xl font-semibold text-blue-700 mb-4">この映画のスケジュール</h2>
+  <ul class="space-y-2">
+    <% @movie.schedules.each do |schedule| %>
+      <li class="flex items-center gap-2 bg-blue-50 rounded px-4 py-2 shadow-sm">
+        <%= link_to "スケジュール ##{schedule.id}", edit_admin_schedule_path(schedule), class: "text-blue-600 hover:underline font-semibold" %>
+        <span class="text-gray-600 text-sm">(<%= schedule.start_time.strftime("%Y-%m-%d %H:%M") %> - <%= schedule.end_time.strftime("%Y-%m-%d %H:%M") %>)</span>
+      </li>
+    <% end %>
+  </ul>
+</div>

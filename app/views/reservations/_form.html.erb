@@ -1,21 +1,16 @@
-<%= form_with(model: reservation) do |form| %>
+<%= form_with(model: reservation, html: { class: "bg-white p-6 rounded-lg shadow max-w-md mx-auto" }) do |form| %>
   <%= form.hidden_field :schedule_id, value: reservation.schedule_id %>
-
   <%= form.hidden_field :sheet_id, value: reservation.sheet_id %>
-
   <%= form.hidden_field :date, value: reservation.date %>
-
-  <div>
-    <%= form.label :email, "メールアドレス" %>
-    <%= form.email_field :email, class: 'form-control' %>
+  <div class="mb-4">
+    <%= form.label :email, "メールアドレス", class: "block text-gray-700 font-semibold mb-2" %>
+    <%= form.email_field :email, class: 'w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400' %>
   </div>
-
-  <div>
-    <%= form.label :name, "名前" %>
-    <%= form.text_field :name, class: 'form-control' %>
+  <div class="mb-4">
+    <%= form.label :name, "名前", class: "block text-gray-700 font-semibold mb-2" %>
+    <%= form.text_field :name, class: 'w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400' %>
   </div>
-
   <div>
-    <%= form.submit "座席を予約する" %>
+    <%= form.submit "座席を予約する", class: "w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition" %>
   </div>
 <% end %>

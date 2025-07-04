@@ -1,21 +1,51 @@
-<table>
-  <% @rows.each do |row| %>
-    <tr>
-      <% @columns.each do |col| %>
-        <% sheet = @sheets.find { |s| s.row == row && s.column == col } %>
-        <% if @reserved_sheet_ids.include?(sheet.id) %>
-          <td class="reserved"><%= sheet.formatted_name %></td>
-        <% else %>
-          <td>
-            <%= link_to sheet.formatted_name, new_movie_schedule_reservation_path(
-              date: @date,
-              movie_id: @movie.id,
-              schedule_id: @schedule.id,
-              sheet_id: sheet.id
-            ) %>
-          </td>
+<div class="overflow-x-auto mt-8">
+  <table class="mx-auto bg-blue-50 rounded-lg" style="border-collapse: separate; border-spacing: 24px 18px;">
+    <thead>
+      <tr>
+        <th></th>
+        <% @columns.each do |col| %>
+          <th class="text-gray-700 text-lg font-medium"><%= col %></th>
         <% end %>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @rows.each do |row| %>
+        <tr>
+          <th class="text-gray-700 text-lg font-medium"><%= row %></th>
+          <% @columns.each do |col| %>
+            <% sheet = @sheets.find { |s| s.row == row && s.column == col } %>
+            <% if @reserved_sheet_ids.include?(sheet.id) %>
+              <td>
+                <div class="w-16 h-16 flex items-center justify-center bg-gray-200 text-gray-400 font-semibold rounded shadow cursor-not-allowed select-none">
+                  <%= sheet.formatted_name %>
+                </div>
+              </td>
+            <% else %>
+              <td>
+                <%= link_to new_movie_schedule_reservation_path(
+                  date: @date,
+                  movie_id: @movie.id,
+                  schedule_id: @schedule.id,
+                  sheet_id: sheet.id
+                ), class: "block w-16 h-16 flex items-center justify-center bg-white border border-blue-200 rounded shadow hover:bg-blue-100 text-blue-600 font-semibold transition text-lg" do %>
+                  <%= sheet.formatted_name %>
+                <% end %>
+              </td>
+            <% end %>
+          <% end %>
+          <th class="text-gray-700 text-lg font-medium"><%= row %></th>
+        </tr>
       <% end %>
-    </tr>
-  <% end %>
-</table>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th></th>
+        <% @columns.each do |col| %>
+          <th class="text-gray-700 text-lg font-medium"><%= col %></th>
+        <% end %>
+        <th></th>
+      </tr>
+    </tfoot>
+  </table>
+</div>

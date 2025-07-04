@@ -1,27 +1,25 @@
-<%= form_with model: schedule, url: [:admin, schedule] do |form| %>
-    <% if schedule.new_record? %>
-      <div>
-        <%= form.label :movie_id, "映画" %>
-        <%= form.collection_select :movie_id, Movie.all, :id, :name, (movie.present? ? { selected: movie.id } : {}), class: 'form-control' %>
-      </div>
-    <% else %>
-      <div>
-        <%= form.label :movie_id, "映画" %>
-          <%= form.collection_select :movie_id, Movie.all, :id, :name, disabled: true, class: 'form-control' %>
-          <%= form.hidden_field :movie_id %>
-      </div>
-    <% end %>
-  <div>
-    <%= form.label :start_time, "開始時間" %>
-    <%= form.datetime_select :start_time, class: 'form-control' %>
+<%= form_with model: schedule, url: [:admin, schedule], html: { class: "bg-white p-6 rounded-lg shadow max-w-xl mx-auto" } do |form| %>
+  <% if schedule.new_record? %>
+    <div class="mb-4">
+      <%= form.label :movie_id, "映画", class: "block text-gray-700 font-semibold mb-2" %>
+      <%= form.collection_select :movie_id, Movie.all, :id, :name, (movie.present? ? { selected: movie.id } : {}), class: 'w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400' %>
+    </div>
+  <% else %>
+    <div class="mb-4">
+      <%= form.label :movie_id, "映画", class: "block text-gray-700 font-semibold mb-2" %>
+      <%= form.collection_select :movie_id, Movie.all, :id, :name, disabled: true, class: 'w-full px-3 py-2 border border-gray-300 rounded bg-gray-100' %>
+      <%= form.hidden_field :movie_id %>
+    </div>
+  <% end %>
+  <div class="mb-4">
+    <%= form.label :start_time, "開始時間", class: "block text-gray-700 font-semibold mb-2" %>
+    <%= form.datetime_select :start_time, class: 'w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400' %>
   </div>
-
-  <div>
-    <%= form.label :end_time, "終了時間" %>
-    <%= form.datetime_select :end_time, class: 'form-control' %>
+  <div class="mb-4">
+    <%= form.label :end_time, "終了時間", class: "block text-gray-700 font-semibold mb-2" %>
+    <%= form.datetime_select :end_time, class: 'w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400' %>
   </div>
-
   <div>
-    <%= form.submit %>
+    <%= form.submit nil, class: "w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition" %>
   </div>
 <% end %>

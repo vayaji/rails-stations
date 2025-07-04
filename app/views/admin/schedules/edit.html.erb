@@ -1,2 +1,6 @@
-<%= render "form", schedule: @schedule %>
-<%= button_to "Delete Schedule", admin_schedule_path(@schedule), method: :delete, data: { confirm: "Are you sure?" } %>
+<div class="max-w-xl mx-auto mt-10 p-8 bg-white rounded-lg shadow-md">
+  <%= render "form", schedule: @schedule %>
+  <div class="mt-6">
+    <%= button_to "Delete Schedule", admin_schedule_path(@schedule), method: :delete, data: { confirm: "Are you sure?" }, class: "bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition" %>
+  </div>
+</div>

@@ -1,23 +1,26 @@
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>映画名</th>
-            <th>開始時間</th>
-            <th>終了時間</th>
-            <th>作成日時</th>
-            <th>更新日時</th>
-        </tr>
+<div class="overflow-x-auto mt-8">
+  <table class="min-w-full border border-gray-200 rounded-lg shadow bg-white">
+    <thead class="bg-blue-50">
+      <tr>
+        <th class="px-4 py-2 text-left text-gray-700 font-semibold">ID</th>
+        <th class="px-4 py-2 text-left text-gray-700 font-semibold">映画名</th>
+        <th class="px-4 py-2 text-left text-gray-700 font-semibold">開始時間</th>
+        <th class="px-4 py-2 text-left text-gray-700 font-semibold">終了時間</th>
+        <th class="px-4 py-2 text-left text-gray-700 font-semibold">作成日時</th>
+        <th class="px-4 py-2 text-left text-gray-700 font-semibold">更新日時</th>
+      </tr>
     </thead>
     <tbody>
-        <% @schedules.each do |schedule| %>
-            <tr>
-                <td><%= link_to schedule.id, edit_admin_schedule_path(schedule) %></td>
-                <td><%= schedule.movie.name %></td>
-                <td><%= schedule.start_time.strftime("%Y-%m-%d %H:%M") %></td>
-                <td><%= schedule.end_time.strftime("%Y-%m-%d %H:%M") %></td>
-                <td><%= schedule.created_at.strftime("%Y-%m-%d %H:%M") %></td>
-                <td><%= schedule.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
-            </tr>
-        <% end %>
-</table>
+      <% @schedules.each do |schedule| %>
+        <tr class="hover:bg-blue-50 transition">
+          <td class="px-4 py-2 border-b"><%= link_to schedule.id, edit_admin_schedule_path(schedule), class: "text-blue-600 hover:underline" %></td>
+          <td class="px-4 py-2 border-b"><%= schedule.movie.name %></td>
+          <td class="px-4 py-2 border-b"><%= schedule.start_time.strftime("%Y-%m-%d %H:%M") %></td>
+          <td class="px-4 py-2 border-b"><%= schedule.end_time.strftime("%Y-%m-%d %H:%M") %></td>
+          <td class="px-4 py-2 border-b"><%= schedule.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+          <td class="px-4 py-2 border-b"><%= schedule.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,30 +1,30 @@
-<%= form_with model: movie, url: [:admin, movie] do |form| %>
-  <div>
-    <%= form.label :name, "タイトル" %>
-    <%= form.text_field :name, class: 'form-control' %>
+<%= form_with model: movie, url: [:admin, movie], html: { class: "bg-white p-6 rounded-lg shadow max-w-xl mx-auto" } do |form| %>
+  <div class="mb-4">
+    <%= form.label :name, "タイトル", class: "block text-gray-700 font-semibold mb-2" %>
+    <%= form.text_field :name, class: 'w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400' %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :year, "公開年", class: "block text-gray-700 font-semibold mb-2" %>
+    <%= form.text_field :year, class: 'w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400' %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :description, "概要", class: "block text-gray-700 font-semibold mb-2" %>
+    <%= form.text_area :description, class: 'w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400' %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :image_url, "画像URL", class: "block text-gray-700 font-semibold mb-2" %>
+    <%= form.text_field :image_url, class: 'w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400' %>
+  </div>
+
+  <div class="mb-4 flex items-center">
+    <%= form.label :is_showing, "上映中", class: "block text-gray-700 font-semibold mr-2" %>
+    <%= form.check_box :is_showing, class: 'accent-blue-500' %>
   </div>
 
   <div>
-    <%= form.label :year, "公開年" %>
-    <%= form.text_field :year, class: 'form-control' %>
-  </div>
-
-  <div>
-    <%= form.label :description, "概要" %>
-    <%= form.text_area :description, class: 'form-control' %>
-  </div>
-
-  <div>
-    <%= form.label :image_url, "画像URL" %>
-    <%= form.text_field :image_url, class: 'form-control' %>
-  </div>
-
-  <div>
-    <%= form.label :is_showing, "上映中" %>
-    <%= form.check_box :is_showing, class: 'form-control' %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit nil, class: "w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition" %>
   </div>
 <% end %>
