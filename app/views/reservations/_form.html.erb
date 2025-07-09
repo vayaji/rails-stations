@@ -1,7 +1,9 @@
 <%= form_with(model: reservation, html: { class: "bg-white p-6 rounded-lg shadow max-w-md mx-auto" }) do |form| %>
   <%= form.hidden_field :schedule_id, value: reservation.schedule_id %>
   <%= form.hidden_field :sheet_id, value: reservation.sheet_id %>
+  <%= form.hidden_field :screen_id, value: reservation.screen_id %>
   <%= form.hidden_field :date, value: reservation.date %>
+  <%= form.hidden_field :movie_id, value: reservation.screen_id %>
   <div class="mb-4">
     <%= form.label :email, "メールアドレス", class: "block text-gray-700 font-semibold mb-2" %>
     <%= form.email_field :email, class: 'w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400' %>

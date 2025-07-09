@@ -15,27 +15,32 @@ class MoviesController < ApplicationController
     end
   end
   def show
-    
+    @screens = Screen.all
   end
 
   def reservation
     if !params[:movie_id].present?
       redirect_to movies_path, alert: "映画のIDが必要です" and return
     end
+    @movie = Movie.find(params[:movie_id])
     if !params[:schedule_id].present?
-      redirect_to movies_path, alert: "上映スケジュールのIDが必要です" and return
-    end
-    if !params[:date].present?
-      redirect_to movies_path, alert: "日付が必要です" and return
+      redirect_to @movie, alert: "上映スケジュールのIDが必要です" and return
     end
     @schedule = Schedule.find_by(id: params[:schedule_id])
-    @movie = Movie.find(params[:movie_id])
+    if !params[:screen_id].present?
+      redirect_to @movie, alert: "スクリーンのIDが必要です" and return
+    end
+    @screen = Screen.find_by(id: params[:screen_id])
+    if !params[:date].present?
+      redirect_to @movie, alert: "日付が必要です" and return
+    end
+    @date = params[:date] || Date.today.strftime("%F")
+
     @sheets = Sheet.all
     @rows = @sheets.map(&:row).uniq.sort
     @columns = @sheets.map(&:column).uniq.sort
 
-    @reservations = Reservation.where(schedule_id: @schedule.id, date: params[:date])
-    @date = params[:date] || Date.today.strftime("%F")
+    @reservations = Reservation.where(date: params[:date], schedule_id: @schedule.id, screen_id: @screen.id)
     @reserved_sheet_ids = @reservations.pluck(:sheet_id)
   end
 
