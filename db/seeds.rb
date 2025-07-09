@@ -75,3 +75,7 @@ Movie.find_each do |movie|
 end
 
 puts "🕒 各映画の上映スケジュール（時間のみ）を作成しました"
+
+3.times do |i|
+  Screen.find_or_create_by!(name: "Screen #{i + 1}")
+end
