@@ -88,6 +88,6 @@ class Admin::ReservationsController < ApplicationController
   end
 
   def reservation_params
-    params.require(:reservation).permit(:date, :schedule_id, :sheet_id, :screen_id, :email, :name)
+    params.require(:reservation).permit(:date, :schedule_id, :sheet_id, :screen_id, :user_id)
   end
 end

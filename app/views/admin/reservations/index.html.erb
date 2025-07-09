@@ -8,7 +8,6 @@
         <th class="px-4 py-2 text-left text-gray-700 font-semibold">予約日</th>
         <th class="px-4 py-2 text-left text-gray-700 font-semibold">開始時間</th>
         <th class="px-4 py-2 text-left text-gray-700 font-semibold">名前</th>
-        <th class="px-4 py-2 text-left text-gray-700 font-semibold">メールアドレス</th>
       </tr>
     </thead>
     <tbody>
@@ -19,8 +18,7 @@
           <td class="px-4 py-2 border-b"><%= reservation.sheet.formatted_name %></td>
           <td class="px-4 py-2 border-b"><%= reservation.date.strftime("%Y-%m-%d") %></td>
           <td class="px-4 py-2 border-b"><%= reservation.schedule.start_time.strftime("%H:%M") %></td>
-          <td class="px-4 py-2 border-b"><%= reservation.name %></td>
-          <td class="px-4 py-2 border-b"><%= reservation.email %></td>
+          <td class="px-4 py-2 border-b"><%= reservation.user.name %></td>
         </tr>
       <% end %>
     </tbody>

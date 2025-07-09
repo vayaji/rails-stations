@@ -11,12 +11,8 @@
 <% end %>
 <%= form_with model: reservation, url: [:admin, reservation], local: true, html: { class: "bg-white p-6 rounded-lg shadow" } do |form| %>
   <div class="mb-4">
-    <%= form.label :name, "名前", class: "block text-gray-700 font-semibold mb-2" %>
-    <%= form.text_field :name, disabled: !@movie_id.present?, class: 'w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400' %>
-  </div>
-  <div class="mb-4">
-    <%= form.label :email, "メールアドレス", class: "block text-gray-700 font-semibold mb-2" %>
-    <%= form.email_field :email, disabled: !@movie_id.present?, class: 'w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400' %>
+    <%= form.label :user_id, "予約者", class: "block text-gray-700 font-semibold mb-2" %>
+    <%= form.collection_select :user_id, User.all, :id, :name, {}, disabled: !@movie_id.present?, class: 'w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400' %>
   </div>
   <div class="mb-4">
     <%= form.label :sheet_id, "座席", class: "block text-gray-700 font-semibold mb-2" %>
